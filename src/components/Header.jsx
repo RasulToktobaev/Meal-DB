@@ -6,7 +6,7 @@ import {
     Flex,
     Text,
     Button,
-    useDisclosure, InputGroup, Input, InputRightElement
+    useDisclosure, InputGroup, Input, InputRightElement, Link
 } from "@chakra-ui/react";
 import {GiHamburgerMenu} from "react-icons/gi";
 import {FaSearchengin} from "react-icons/fa6";
@@ -29,7 +29,7 @@ const Header = () => {
         >
             <Flex align="center" mr={5}>
                 <Heading as="h1" size="lg" letterSpacing={"tighter"}>
-                    Meal DB
+                    <Link to='/'>Meal DB</Link>
                 </Heading>
             </Flex>
 
@@ -62,7 +62,7 @@ const Header = () => {
                     colorScheme="blue"
                     _hover={{bg: "blue.700", borderColor: "blue.700"}}
                 >
-                    Create account
+                 <Link to="/register"> Search</Link>
                 </Button>
             </Box>
         </Flex>

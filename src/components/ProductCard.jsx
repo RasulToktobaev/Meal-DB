@@ -44,19 +44,19 @@ const ProductCard = (props) => {
                     aria-label={`Add ${name} to your favourites`}
                 />
             </Box>
-            <Stack>
-                <Stack spacing="1">
-                    <Text fontWeight="medium" color={useColorModeValue('gray.700', 'gray.400')}>
-                        {name}
-                    </Text>
-                    <PriceTag price={price} salePrice={salePrice} currency="USD" />
-                </Stack>
-                <HStack>
-                    <Text fontSize="sm" color={useColorModeValue('gray.600', 'gray.400')}>
-                        12 Reviews
-                    </Text>
-                </HStack>
-            </Stack>
+            {/*<Stack>*/}
+            {/*    <Stack spacing="1">*/}
+            {/*        <Text fontWeight="medium" color={useColorModeValue('gray.700', 'gray.400')}>*/}
+            {/*            {name}*/}
+            {/*        </Text>*/}
+            {/*        <PriceTag price={price} salePrice={salePrice} currency="USD" />*/}
+            {/*    </Stack>*/}
+            {/*    <HStack>*/}
+            {/*        <Text fontSize="sm" color={useColorModeValue('gray.600', 'gray.400')}>*/}
+            {/*            12 Reviews*/}
+            {/*        </Text>*/}
+            {/*    </HStack>*/}
+            {/*</Stack>*/}
             <Stack align="center">
                 <Button colorScheme="blue" width="full">
                   Add to planned

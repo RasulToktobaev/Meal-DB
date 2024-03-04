@@ -1,11 +1,17 @@
-import Header from "./components/Header";
+
 import ProductsList from "./components/ProductsList";
+import { Route, Routes} from "react-router-dom";
+import BaseLayout from "./layouts/BaseLayout";
 
 function App() {
     return (
         <>
-            <Header/>
-            <ProductsList/>
+            <Routes>
+                <Route path='/' element={<BaseLayout/>}>
+                    <Route index element={<ProductsList/>} />
+                    <Route path='/register' element={<h1>REGISTER</h1>} />
+                </Route>
+            </Routes>
         </>
     );
 }
