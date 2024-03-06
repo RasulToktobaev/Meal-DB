@@ -6,6 +6,10 @@ export const MealContext = createContext()
 const MealContextProvider = ({children}) => {
     const [text, setText] = useState('')
 
+
+
+
+
     const images = [
         {
             id: '01',

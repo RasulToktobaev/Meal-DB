@@ -2,20 +2,21 @@ import {
     AspectRatio,
     Box,
     Button,
-    HStack,
     Image,
-    Link,
     Skeleton,
     Stack,
-    Text,
-    useColorModeValue,
 } from '@chakra-ui/react'
 import FavouriteButton from './FavouriteButton'
-import PriceTag from './PriceTag'
+import {useNavigate} from 'react-router-dom'
+
 
 const ProductCard = (props) => {
     const { product, rootProps } = props
-    const { name, imageUrl, price, salePrice } = product
+    const { strCategory, strCategoryThumb} = product
+
+    const navigate = useNavigate()
+
+
     return (
         <Stack
             spacing={{
@@ -27,8 +28,8 @@ const ProductCard = (props) => {
             <Box position="relative">
                 <AspectRatio ratio={4 / 3}>
                     <Image
-                        src={imageUrl}
-                        alt={name}
+                        src={strCategoryThumb}
+                        alt={strCategory}
                         draggable="false"
                         fallback={<Skeleton />}
                         borderRadius={{
@@ -37,29 +38,17 @@ const ProductCard = (props) => {
                         }}
                     />
                 </AspectRatio>
+                <p>{strCategory}</p>
                 <FavouriteButton
                     position="absolute"
                     top="4"
                     right="4"
-                    aria-label={`Add ${name} to your favourites`}
+                    aria-label={`Add ${strCategory} to your favourites`}
                 />
             </Box>
-            {/*<Stack>*/}
-            {/*    <Stack spacing="1">*/}
-            {/*        <Text fontWeight="medium" color={useColorModeValue('gray.700', 'gray.400')}>*/}
-            {/*            {name}*/}
-            {/*        </Text>*/}
-            {/*        <PriceTag price={price} salePrice={salePrice} currency="USD" />*/}
-            {/*    </Stack>*/}
-            {/*    <HStack>*/}
-            {/*        <Text fontSize="sm" color={useColorModeValue('gray.600', 'gray.400')}>*/}
-            {/*            12 Reviews*/}
-            {/*        </Text>*/}
-            {/*    </HStack>*/}
-            {/*</Stack>*/}
             <Stack align="center">
-                <Button colorScheme="blue" width="full">
-                  Add to planned
+                <Button onClick={() => navigate(`/products/${strCategory}`)}  colorScheme="blue" width="full" >
+                    Перейти
                 </Button>
             </Stack>
         </Stack>
