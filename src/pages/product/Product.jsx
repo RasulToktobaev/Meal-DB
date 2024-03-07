@@ -1,12 +1,16 @@
 import React, {useEffect, useState} from 'react';
 import axios from "axios";
-import {useParams} from "react-router-dom";
+import {useNavigate, useParams} from "react-router-dom";
+import {Button} from "@chakra-ui/react";
+import ReactPlayer from "react-player";
 
 const Product = () => {
 
     const [product, setProduct] = useState(null)
 
     const params = useParams()
+
+    const navigate = useNavigate()
 
     useEffect(() => {
         axios(`https://www.themealdb.com/api/json/v1/1/search.php?s=${params.productName}`)
@@ -17,11 +21,17 @@ const Product = () => {
         return <h2>Loading...</h2>
     }
 
+
+
     return (
         <div>
-            <h2 style={{paddingLeft:'15%', color:'teal', fontSize:'18px', fontFamily:'Tahoma, serif'}}>{product.strMeal}</h2>
+            <Button style={{marginLeft: '6%', position:'absolute', top:'2%', left:'14%'}} onClick={() => navigate(-1)} colorScheme="blue" width="min-content">
+                Назад
+            </Button>
 
-            <h3 style={{paddingLeft:'15%', color:'red', fontSize:'18px', fontFamily: 'Helvetica, sans-serif', marginTop:'20px'}}>{product.strCategory} {product.strArea}</h3>
+            <h2 style={{paddingLeft:'15%', color:'teal', fontSize:'20px', fontFamily:'Verdana'}}>{product.strMeal}</h2>
+
+            <h3 style={{paddingLeft:'15%', color:'red', fontSize:'20px', fontFamily: 'Georgia', marginTop:'20px'}}>{product.strCategory} {product.strArea}</h3>
 
             <img src={product.strMealThumb} alt="" style={{width: '280px', height: '280px',marginLeft:'15%', marginTop:'20px', borderRadius:'20px' }}/>
 
@@ -30,27 +40,29 @@ const Product = () => {
             <p style={{paddingLeft:'30px',marginTop:'20px', color:'orange', marginBottom:'40px'}}>{product.strInstructions}</p>
 
 
-            <iframe style={{marginLeft:'30%'}} width="560" height="315" src="https://www.youtube.com/embed/1IszT_guI08?si=J-MKt-xtdBxdaowu"
-                    title="YouTube video player" frameBorder="0"
-                    allow="accelerometer; autoplay; clipboard-write; encrypted-media; gyroscope; picture-in-picture; web-share"
-                    allowFullScreen></iframe>
+            <ReactPlayer style={{marginLeft:'28%'}}
+                url={product.strYoutube}
+                controls={true}
+            />
 
-            <div style={{display: 'flex', columnGap: '50px',marginLeft:'15%'}}>
+
+
+            <div style={{display: 'flex', columnGap: '17%',marginLeft:'35%', marginTop:'45px'}}>
                 <ul style={{display:'flex', flexDirection:'column', gap:'15px'}}>
                     {
                         Object.entries(product).filter((item) => item[0].includes('strIngredient') && item[1] !== null && item[1].trim().length )
                             .map((item) => (
-                                <li style={{listStyle:'none', fontSize:'17px', color:'darkgreen', fontFamily:'Arial'}} key={item[0]}>{item[1]}</li>
+                                <li style={{listStyle:'none', fontSize:'19px', color:'lime', fontFamily:'Palatino'}} key={item[0]}>{item[1]}</li>
                             ))
                     }
                 </ul>
 
 
-                <ul>
+                <ul style={{display:'flex', flexDirection:'column', gap:'15px'}}>
                     {
                         Object.entries(product).filter((item) => item[0].includes('strMeasure') && item[1] !== null && item[1].trim().length )
                             .map((item) => (
-                                <li key={item[0]}>{item[1]}</li>
+                                <li style={{listStyle:'none', fontSize:'19px', color:'tomato', fontFamily:'Palatino'}} key={item[0]}>{item[1]}</li>
                             ))
                     }
                 </ul>
