@@ -12,8 +12,8 @@ function App() {
                 <Route path='/' element={<BaseLayout/>}>
                     <Route index element={<ProductsList/>} />
                     <Route path='/register' element={<h1>REGISTER</h1>} />
-                    <Route path='products/:productsName' element={<Products/>} />
-                    <Route path='product/:productName' element={<Product/>} />
+                    <Route path='products/:category/' element={<Products/>} />
+                    <Route path='products/:category/:product' element={<Product/>} />
                 </Route>
             </Routes>
         </>

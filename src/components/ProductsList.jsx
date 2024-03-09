@@ -11,9 +11,9 @@ const ProductsList = () => {
     const [categories, setCategories] = useState([])
 
     useEffect(() => {
-       axios('https://www.themealdb.com/api/json/v1/1/categories.php')
-           .then(({data}) => setCategories(data.categories))
-    },[])
+        axios('https://www.themealdb.com/api/json/v1/1/categories.php')
+            .then(({data}) => setCategories(data.categories))
+    }, [])
 
     return (
         <Box
@@ -32,7 +32,13 @@ const ProductsList = () => {
         >
             <ProductGrid>
                 {categories.map((product) => (
-                    <ProductCard key={product.idCategory} product={product}/>
+                    <ProductCard
+                     key={product.idCategory}
+                    image={product.strCategoryThumb}
+                    title={product.strCategory}
+                     link={`/products/${product.strCategory.toLowerCase()}`}
+                    />
+
                 ))}
             </ProductGrid>
         </Box>

@@ -11,8 +11,7 @@ import {useNavigate} from 'react-router-dom'
 
 
 const ProductCard = (props) => {
-    const { product, rootProps } = props
-    const { strCategory, strCategoryThumb} = product
+    const {image, title, link, rootProps= {}} = props
 
     const navigate = useNavigate()
 
@@ -28,8 +27,8 @@ const ProductCard = (props) => {
             <Box position="relative">
                 <AspectRatio ratio={4 / 3}>
                     <Image
-                        src={strCategoryThumb}
-                        alt={strCategory}
+                        src={image}
+                        alt={title}
                         draggable="false"
                         fallback={<Skeleton />}
                         borderRadius={{
@@ -38,16 +37,18 @@ const ProductCard = (props) => {
                         }}
                     />
                 </AspectRatio>
-                <p>{strCategory}</p>
+                <p>{title}</p>
                 <FavouriteButton
                     position="absolute"
                     top="4"
                     right="4"
-                    aria-label={`Add ${strCategory} to your favourites`}
+                    aria-label={`Add ${title} to your favourites`}
                 />
             </Box>
             <Stack align="center">
-                <Button onClick={() => navigate(`/products/${strCategory}`)}  colorScheme="blue" width="full" >
+                <Button onClick={() => navigate(link)}
+                        colorScheme="blue"
+                        width="full" >
                     Перейти
                 </Button>
             </Stack>
