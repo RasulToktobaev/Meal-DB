@@ -39,9 +39,7 @@ const Test = () => {
 
     return (
         <>
-
             <AddCar/>
-
             <ul>
                 {data.map((item) => (
                     <li key={item.id}>{item.brand}
